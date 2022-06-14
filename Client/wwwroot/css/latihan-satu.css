@@ -1,0 +1,110 @@
+﻿.type-normal {
+    background-color: #A8A878;
+    color: #F8F8F8;
+}
+
+.type-fire {
+    background-color: #F08030;
+    color: #F8F8F8;
+}
+
+.type-water {
+    background-color: #6890F0;
+    color: #F8F8F8;
+}
+
+.type-grass {
+    background-color: #78C850;
+    color: #F8F8F8;
+}
+
+.type-electric {
+    background-color: #F8D030;
+    color: #F8F8F8;
+}
+
+.type-ice {
+    background-color: #98D8D8;
+    color: #F8F8F8;
+}
+
+.type-fighting {
+    background-color: #C03028;
+    color: #F8F8F8;
+}
+
+.type-ground {
+    background-color: #E0C068;
+    color: #F8F8F8;
+}
+
+.type-poison {
+    background-color: #A040A0;
+    color: #F8F8F8;
+}
+
+.type-flying {
+    background-color: #A890F0;
+    color: #F8F8F8;
+}
+
+.type-psychic {
+    background-color: #F85888;
+    color: #F8F8F8;
+}
+
+.type-bug {
+    background-color: #A8B820;
+    color: #F8F8F8;
+}
+
+.type-rock {
+    background-color: #B8A038;
+    color: #F8F8F8;
+}
+
+.type-ghost {
+    background-color: #705898;
+    color: #F8F8F8;
+}
+
+.type-dark {
+    background-color: #705848;
+    color: #F8F8F8;
+}
+
+.type-dragon {
+    background-color: #7038F8;
+    color: #F8F8F8;
+}
+
+.type-steel {
+    background-color: #B8B8D0;
+    color: #F8F8F8;
+}
+
+.type-fairy {
+    background-color: #F0B6BC;
+    color: #F8F8F8;
+}
+
+@font-face{
+    font-family: Pokemon;
+    src:url('../resources/font/Pokemon GB.ttf');
+}
+
+.poke-type {
+    text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+.modal-body {
+    height: 450px;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}

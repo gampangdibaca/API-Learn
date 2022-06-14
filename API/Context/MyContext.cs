@@ -50,6 +50,7 @@ namespace API.Context
                 .HasForeignKey(ar => ar.Roles_Id);
         }
 
+
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Profiling> Profilings { get; set; }

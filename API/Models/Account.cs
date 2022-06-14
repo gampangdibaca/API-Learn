@@ -14,8 +14,8 @@ namespace API.Models
         public string OTP { get; set; }
         public DateTime ExpiredTime { get; set; }
         public bool IsActiveOTP { get; set; }
-        public Employee Employee { get; set; }
-        public Profiling Profiling { get; set; }
-        public ICollection<AccountRole> AccountRoles { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Profiling Profiling { get; set; }
+        public virtual ICollection<AccountRole> AccountRoles { get; set; }
     }
 }

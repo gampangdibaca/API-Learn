@@ -60,7 +60,9 @@ html {
 
 body {
   /* Margin bottom by footer height */
+  padding-top: 70px;
   margin-bottom: 60px;
+  padding-bottom: 50px;
 }
 .footer {
   position: absolute;
@@ -68,4 +70,107 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+
+header div.container a.brand{
+    width: 75px;
+}
+
+header div.d-block nav.navbar {
+    height: 75px;
+}
+
+li.nav-item a.active {
+    color: #0652DD !important;
+    padding: 8px 0 !important;
+}
+
+li.nav-item a.active:after{
+    display: block;
+    content: '';
+    border-bottom: solid 3px #0652DD;
+    transform:scale(1) !important;
+    transition:none !important;
+}
+
+li .nav-item a.nav-link {
+transition: 0.1s ease-in-out;
+padding: 8px 0 !important;
+}
+
+li.nav-item a.nav-link:hover {
+    color: #0652DD !important;
+}
+
+
+li.nav-item a.nav-link:after {
+    margin-top: 8px;
+    display: block;
+    content: '';
+    border-bottom: solid 3px #0652DD;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+
+li.nav-item a.nav-link:hover:after{
+    transform:scaleX(1);
+}
+
+li.nav-item {
+    padding: 0 8px;
+}
+
+.row {
+    padding: 8px 0;
+}
+
+.scroll-top{
+    font-size: 2.5rem;
+    position: fixed;
+    right: 30px;
+    bottom:30px;
+    color: #0652DD;
+}
+
+.scroll-top:hover{
+    opacity: 0.9;
+}
+
+.logo {
+    transition: 0.3s linear;
+    height: 80px;
+    transform: scale(1);
+}
+
+.logo:hover{
+    transform:scale(1.2);
+}
+
+.book-image{
+    width:100%;
+    transition: transform 0.2s;
+}
+
+.book-image:hover{
+    transform: scale(1.03);
+}
+
+.footer-icon{
+    font-size: 1.5rem;
+}
+
+.footer-icon a {
+    text-decoration: none;
+    margin: 0 4px;
+    padding: 0 2px;
+    height: 40px;
+}
+
+.footer-icon a i {
+    transition: 0.2s ease-in-out;
+}
+
+.footer-icon a i:hover{
+    font-size: 1.75rem;
 }

@@ -19,7 +19,7 @@ namespace API
         //[Required(ErrorMessage = "Email Harus Diisi!!!")]
         public string Email { get; set; }
         public Gender Gender { get; set; }
-        public Account Account { get; set; }
+        public virtual Account Account { get; set; }
         public bool IsDeleted { get; set; }
 
         public Employee()

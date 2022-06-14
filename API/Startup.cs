@@ -41,7 +41,8 @@ namespace API
                 c.AddPolicy("AllowOrigin", options => options.WithOrigins("https://localhost:44330"));
             });
             services.AddDbContext<MyContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("APIContext")));
+            options.UseLazyLoadingProxies()
+            .UseSqlServer(Configuration.GetConnectionString("APIContext")));
             services.AddAuthentication(auth =>
             {
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

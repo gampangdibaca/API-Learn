@@ -13,6 +13,6 @@ namespace API.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<AccountRole> AccountRoles { get; set; }
+        public virtual ICollection<AccountRole> AccountRoles { get; set; }
     }
 }
