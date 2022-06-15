@@ -55,7 +55,7 @@ namespace API.Controllers
             
         }
         
-        [Authorize(Roles = "Director,Manager")]
+        //[Authorize(Roles = "Director,Manager")]
         [HttpGet("getRegisteredData")]
         public ActionResult GetRegisteredData()
         {

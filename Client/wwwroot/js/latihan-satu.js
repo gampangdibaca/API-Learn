@@ -105,6 +105,8 @@
 
 //$("h1").html("testing rubah dari jquery");
 
+
+//========================BATAS POKEMON========================
 $.ajax({
     url: "https://pokeapi.co/api/v2/pokemon/",
     context: document.body

@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace API
@@ -38,11 +39,15 @@ namespace API
             services.AddScoped<AccountRoleRepository>();
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.WithOrigins("https://localhost:44330"));
+                c.AddPolicy("AllowOrigin", options => options.WithOrigins("https://localhost:44330").AllowAnyHeader().AllowAnyMethod());
             });
+            //services.AddDbContext<MyContext>(options =>
+            //options.UseLazyLoadingProxies()
+            //.UseSqlServer(Configuration.GetConnectionString("APIContext")));
+
             services.AddDbContext<MyContext>(options =>
-            options.UseLazyLoadingProxies()
-            .UseSqlServer(Configuration.GetConnectionString("APIContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("APIContext")));
+
             services.AddAuthentication(auth =>
             {
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -80,7 +85,7 @@ namespace API
             
             app.UseAuthorization();
 
-            app.UseCors(options => options.WithOrigins("https://localhost:44330"));
+            app.UseCors(options => options.WithOrigins("https://localhost:44330").AllowAnyHeader().AllowAnyMethod());
 
             app.UseEndpoints(endpoints =>
             {
