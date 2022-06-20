@@ -1,1 +1,19 @@
-﻿
+﻿div#content-wrapper div#content div#employee-table_wrapper div.dt-buttons button.btn-custom {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

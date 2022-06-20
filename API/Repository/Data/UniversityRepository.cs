@@ -13,5 +13,15 @@ namespace API.Repository.Data
         {
 
         }
+
+        public List<University> GetUniversities()
+        {
+            List<University> lu = new List<University>();
+            foreach (University university in myContext.Universities)
+            {
+                lu.Add(new University { Id = university.Id, Name=university.Name }) ;
+            }
+            return lu;
+        }
     }
 }

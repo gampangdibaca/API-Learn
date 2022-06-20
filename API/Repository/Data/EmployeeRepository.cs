@@ -131,10 +131,21 @@ namespace API.Repository.Data
             foreach (Employee employee in myContext.Employees.ToList())
             {
                 RegisteredDataVM registeredData = new RegisteredDataVM();
+                registeredData.NIK = employee.NIK;
                 registeredData.FullName = $"{employee.FirstName} {employee.LastName}";
                 registeredData.Phone = employee.Phone;
                 registeredData.BirthDate = employee.BirthDate;
-                registeredData.Salary = employee.Salary;
+                string stringSalary = employee.Salary + "";
+                string formattedSalary = "";
+                for (int i = 1; i <= stringSalary.Length; i++)
+                {
+                    formattedSalary = stringSalary[stringSalary.Length - i] + formattedSalary;
+                    if (i % 3 == 0 && i != stringSalary.Length)
+                    {
+                        formattedSalary = "." + formattedSalary;
+                    }
+                }
+                registeredData.Salary = formattedSalary;
                 registeredData.Gender = employee.Gender.ToString();
                 registeredData.Email = employee.Email;
                 Profiling profiling = myContext.Profilings.Find(employee.NIK);
@@ -146,6 +157,38 @@ namespace API.Repository.Data
             }
 
             return registeredDatas;
+        }
+
+        public GetByNIKResponseVM getByNIK(GetByNIKVM getByNIKVM)
+        {
+
+            Employee employee = myContext.Employees.Find(getByNIKVM.NIK);
+            if(employee == null)
+            {
+                return null;
+            }
+            GetByNIKResponseVM getByNIKResponseVM = new GetByNIKResponseVM
+            {
+                NIK = employee.NIK,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Phone = employee.Phone,
+                Email = employee.Email,
+                Gender = employee.Gender.ToString(),
+                Salary = employee.Salary,
+                BirthDate = employee.BirthDate,
+                Degree = employee.Account.Profiling.Education.Degree.ToString(),
+                GPA = employee.Account.Profiling.Education.GPA,
+                UniversityId = employee.Account.Profiling.Education.University_Id,
+                EducationId = employee.Account.Profiling.Education.Id
+            };
+            List<int> roles = new List<int>();
+            foreach (var item in employee.Account.AccountRoles)
+            {
+                roles.Add(item.Roles_Id);
+            };
+            getByNIKResponseVM.Roles = roles.ToArray();
+            return getByNIKResponseVM;
         }
         
     }

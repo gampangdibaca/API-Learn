@@ -2,9 +2,11 @@
 using API.Repository.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -13,9 +15,18 @@ namespace API.Controllers
     [ApiController]
     public class UniversitiesController : BaseController<University, UniversityRepository, int>
     {
-        public UniversitiesController(UniversityRepository universityRepository) : base(universityRepository)
-        {
+        private readonly UniversityRepository universityRepository;
+        public IConfiguration _configuration;
 
+        public UniversitiesController(UniversityRepository universityRepository, IConfiguration configuration) : base(universityRepository)
+        {
+            this.universityRepository = universityRepository;
+            this._configuration = configuration;
+        }
+        [HttpGet("GetUniversities")]
+        public ActionResult GetUniversities()
+        {
+            return StatusCode(200, new { status=HttpStatusCode.OK, message = "Success Get Universities", data = universityRepository.GetUniversities() });
         }
     }
 }

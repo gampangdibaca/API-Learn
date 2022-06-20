@@ -74,6 +74,24 @@ namespace API.Controllers
         {
             return Ok("Test CORS Berhasil!!!");
         }
-    
+
+        [HttpPost("GetEmployeeByNIK")]
+        public ActionResult GetEmployeeByNIK(GetByNIKVM getByNIKVM)
+        {
+            GetByNIKResponseVM getByNIKResponseVM = employeeRepository.getByNIK(getByNIKVM);
+            return StatusCode(200, new { status = HttpStatusCode.OK, message = "Success Get Employee Data", data = getByNIKResponseVM });
+        }
+
+        [HttpDelete("DeleteEmployee")]
+        public ActionResult DeleteEmployee(DeleteEmployeeVM deleteEmployeeVM)
+        {
+            int result = employeeRepository.Delete(deleteEmployeeVM.NIK);
+            if(result <= 0)
+            {
+                return StatusCode(400, new { status = HttpStatusCode.BadRequest, message = $"Failed Delete Employee with NIK: {deleteEmployeeVM.NIK} !!!" });
+            }
+            return StatusCode(200, new { status = HttpStatusCode.OK, message = $"Success Delete Employee with NIK: {deleteEmployeeVM.NIK} !!!" });
+        }
+
     }
 }
