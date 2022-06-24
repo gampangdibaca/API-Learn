@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -20,6 +21,12 @@ namespace API.Controllers
         {
             this.educationRepository = educationRepository;
             this._configuration = configuration;
+        }
+        [HttpGet("GetUniversityDistribution")]
+        public ActionResult GetUniversityDistribution()
+        {
+            var result = educationRepository.GetUniversityDistribution();
+            return StatusCode(200, new { status = HttpStatusCode.OK, message = "Success Get Employee University Distribution!!", data = result });
         }
     }
 }

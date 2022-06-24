@@ -93,5 +93,15 @@ namespace API.Controllers
             return StatusCode(200, new { status = HttpStatusCode.OK, message = $"Success Delete Employee with NIK: {deleteEmployeeVM.NIK} !!!" });
         }
 
+        [HttpGet("GetGenderDistribution")]
+        public ActionResult GetGenderDistribution()
+        {
+            Dictionary<string, int> result = employeeRepository.GetGenderDistribution();
+            if (result.Count <= 0)
+            {
+                return StatusCode(400, new { status = HttpStatusCode.BadRequest, message = "Failed to Get Employee Gender Distribution Data!!!" });
+            }
+            return StatusCode(200, new { status = HttpStatusCode.OK, message = "Success Get Employee Gender Distribution Data", data = result });
+        }
     }
 }

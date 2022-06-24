@@ -18,6 +18,24 @@ namespace Client.Controllers
             _logger = logger;
         }
 
+        [HttpGet("Unauthorized/")]
+        public IActionResult Unauthorized()
+        {
+            return View("401");
+        }
+
+        [HttpGet("Forbidden/")]
+        public IActionResult Forbidden()
+        {
+            return View("403");
+        }
+
+        [HttpGet("NotFound/")]
+        public IActionResult NotFound()
+        {
+            return View("404");
+        }
+
         public IActionResult Index()
         {
             return View();

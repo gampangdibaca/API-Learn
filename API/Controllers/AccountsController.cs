@@ -30,7 +30,8 @@ namespace API.Controllers
         public ActionResult Login(LoginVM loginVM)
         {
             string idToken = "";
-            var result = accountRepository.VerifyLogin(loginVM, _configuration, out idToken);
+            string name = "";
+            var result = accountRepository.VerifyLogin(loginVM, _configuration, out idToken, out name);
             switch (result)
             {
                 case -1:
@@ -40,7 +41,7 @@ namespace API.Controllers
                 case -3:
                     return StatusCode(400, new { status = HttpStatusCode.BadRequest, message = "Invalid Password!!!" });
                 default:
-                    return StatusCode(200, new { status = HttpStatusCode.OK, idToken, message = "Login Berhasil!!!" });
+                    return StatusCode(200, new { status = HttpStatusCode.OK, idToken, message = "Login Berhasil!!!", Name = name });
             }
         }
 

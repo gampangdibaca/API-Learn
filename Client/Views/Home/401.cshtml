@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "_ErrorLayout";
+    ViewData["Title"] = "Unauthorized";
+}
+<div class="row">
+    <div class="col">
+        <div style="font-size: 100px">401</div>
+        <h1>Unauthorized</h1>
+
+        <div class="row">
+            <div class="col">
+                Please login!!!
+                Redirecting in <span id="counter"></span> seconds!!!
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <img src="https://http.cat/401" alt="Alternate Text" />
+    </div>
+</div>
+
+
+<script>
+    //$("document").ready(() => {
+    //    let count = 5;
+    //    $("#counter").html(count)
+    //    while (count >= 0) {
+    //        setTimeout(() => {
+    //            console.log(count)
+    //            if (count == 0) {
+    //                window.location.href = "/Login"
+    //            }
+    //            $("#counter").html(count)
+    //            count--;
+    //        }, 1000);
+    //    }
+    //});
+    //let count = 5;
+    //while (count>=0) {
+    //    setTimeout(() => {
+    //        console.log(count)
+    //        count--;
+    //    }, 1000);
+    //}
+    let a = 5;
+    let si;
+    window.onload = () => {
+        
+
+        si = setInterval(ts, 1000);
+            
+    }
+
+    function ts() {
+        console.log(a);
+        $("#counter").html(a);
+        a--;
+        if (a == 0) {
+            clearInterval(si);
+            window.location.href = "/Login"
+        }
+    }
+
+</script>

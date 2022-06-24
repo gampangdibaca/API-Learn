@@ -15,7 +15,7 @@ let generalExportOptions = {
 $(document).ready(function () {
     table = $('#employee-table').DataTable({
         "ajax": {
-            "url": "https://localhost:44354/api/Employees/GetRegisteredData",
+            "url": "Employees/GetRegistered",
             "dataType": "json",
             "dataSrc": "data"
         },
@@ -114,11 +114,11 @@ function updateEmployeeModal(nik) {
     let obj = { NIK: nik };
     $.ajax({
         type: "POST",
-        url: "https://localhost:44354/api/Employees/GetEmployeeByNIK",
+        url: "Employees/GetEmployeeByNIK",
         context: document.body,
-        dataType: 'JSON',
-        data: JSON.stringify(obj),
-        contentType: 'application/json; charset=utf-8',
+        data: obj,
+        //dataType: 'JSON',
+        //contentType: 'application/json; charset=utf-8',
     }).done((result) => {
         console.log(result);
         $("#update-phone").val(result.data.phone);
@@ -173,13 +173,25 @@ function updateEmployee(updatedEmployee) {
         $("#update-form")[0].reset();
         $("#update-form").removeClass("was-validated");
         console.log(result);
+        Swal.fire({
+            title: 'Success!',
+            text: 'Employee updated Successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#2ecc71'
+        });
         table.ajax.reload();
     }).fail((error) => {
         //alert pemberitahuan jika gagal
         console.log(error.responseJSON.message);
-        alert(error.responseJSON.message);
+        Swal.fire({
+            title: 'Error!',
+            text: error.responseJSON.message,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#eb2f06'
+        });
     });
-    console.log("from func");
 }
 
 $("#update-education").submit((e) => {
@@ -210,12 +222,25 @@ function updateEducation(obj) {
         $('#updateEmployeeModal').modal('toggle');
         $("#update-education")[0].reset();
         $("#update-education").removeClass("was-validated");
+        Swal.fire({
+            title: 'Success!',
+            text: 'Employee education updated Successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#2ecc71'
+        });
         console.log(result);
         table.ajax.reload();
     }).fail((error) => {
         //alert pemberitahuan jika gagal
         console.log(error.responseJSON.message);
-        alert(error.responseJSON.message);
+        Swal.fire({
+            title: 'Error!',
+            text: error.responseJSON.message,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#eb2f06'
+        });
     });
 }
 
@@ -223,6 +248,19 @@ let employeeNikToDelete = "";
 
 function deleteEmployeeModal(nik) {
     employeeNikToDelete = nik;
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete employee with NIK : " + nik + " ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deleteEmployee();
+        }
+    })
     $("#deleteEmployeeMessage").html("Are you sure you want to delete employee with NIK : " + nik + " ?");
     console.log(nik);
 }
@@ -237,11 +275,23 @@ function deleteEmployee() {
         data: JSON.stringify(obj),
         contentType: 'application/json; charset=utf-8',
     }).done((result) => {
-        $('#deleteEmployeeModal').modal('toggle');
+        Swal.fire({
+            title: 'Success!',
+            text: 'Employee deleted Successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#2ecc71'
+        });
         console.log(result);
         table.ajax.reload();
     }).fail((error) => {
-        alert(error.responseJSON.message);
+        Swal.fire({
+            title: 'Error!',
+            text: error.responseJSON.message,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#eb2f06'
+        });
         console.log(error.responseJSON.message);
     })
 }
@@ -287,23 +337,36 @@ function Insert() {
         console.log(obj);
         //isi dari object kalian buat sesuai dengan bentuk object yang akan di post
         $.ajax({
-            url: "https://localhost:44354/api/Employees/register",
+            url: "Employees/register",
             type: "POST",
             data: JSON.stringify(obj), //jika terkena 415 unsupported media type (tambahkan headertype Json & JSON.Stringify();)
             context: document.body,
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8'
+            //dataType: 'JSON',
+            //contentType: 'application/json; charset=utf-8'
         }).done((result) => {
             //buat alert pemberitahuan jika success
             $('#registerEmployeeModal').modal('toggle');
             $("#register-form")[0].reset();
             $("#register-form").removeClass("was-validated");
+            Swal.fire({
+                title: 'Success!',
+                text: 'Employee registered Successfully',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#2ecc71'
+            });
             console.log(result);
             table.ajax.reload();
         }).fail((error) => {
             //alert pemberitahuan jika gagal
             console.log(error.responseJSON);
-            alert(error);
+            Swal.fire({
+                title: 'Error!',
+                text: error.responseJSON.message,
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#eb2f06'
+            });
         });
     }
 }

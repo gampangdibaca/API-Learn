@@ -1,0 +1,16 @@
+﻿.bg-login-image{
+    background: url("../resources/img/shake-hand-small.jpg") !important;
+    background-position:center;
+    background-size:cover;
+}
+
+
+.bg-login{
+    background: url("../resources/img/login-bg.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+.big-container{
+    height:100vh;
+}

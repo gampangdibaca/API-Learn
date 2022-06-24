@@ -27,7 +27,7 @@ namespace API.Controllers
             {
                 return StatusCode(204, new { status = HttpStatusCode.NoContent, message = "There is no data." });
             }
-            return StatusCode(200, new { status = HttpStatusCode.OK, message = "Get Success.", data = result }); ;
+            return StatusCode(200, new { status = HttpStatusCode.OK, message = "Get Success.", data = result });
         }
 
         [HttpGet("{key}")]

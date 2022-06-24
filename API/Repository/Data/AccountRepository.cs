@@ -25,13 +25,14 @@ namespace API.Repository.Data
             
         }
 
-        public int VerifyLogin(LoginVM loginVM, IConfiguration _configuration, out string idToken)
+        public int VerifyLogin(LoginVM loginVM, IConfiguration _configuration, out string idToken, out string name)
         {
             const int InvalidEmail = -1;
             const int InvalidAccount = -2;
             const int InvalidPassword = -3;
             const int Success = 200;
             idToken = "";
+            name = "";
             Employee employee = (from e in myContext.Employees where e.Email == loginVM.Email select e).FirstOrDefault();
             if (employee == null)
             {
@@ -68,7 +69,7 @@ namespace API.Repository.Data
                 );
             idToken = new JwtSecurityTokenHandler().WriteToken(token);
             claims.Add(new Claim("TokenSecurity", idToken.ToString()));
-            
+            name = employee.FirstName + " " + employee.LastName;
             return Success;
         }
 

@@ -191,5 +191,12 @@ namespace API.Repository.Data
             return getByNIKResponseVM;
         }
         
+        public Dictionary<string, int> GetGenderDistribution()
+        {
+            Dictionary<string, int> distribution = new Dictionary<string, int>();
+            distribution.Add("Male", myContext.Employees.Where(e  => e.Gender == Gender.Male).Count());
+            distribution.Add("Female", myContext.Employees.Where(e => e.Gender == Gender.Female).Count());
+            return distribution;
+        }
     }
 }
